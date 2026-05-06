@@ -1,0 +1,118 @@
+    function renderMGRDashboard() {
+      return `
+  <style>
+    .step-indicator { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .step { flex: 1; text-align: center; position: relative; z-index: 1; }
+    .step-icon { width: 40px; height: 40px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-weight: bold; background: var(--gray-300); }
+    .step.active .step-icon { background: var(--success); }
+    .step.current .step-icon { background: var(--gold); animation: pulse 2s infinite; }
+    .step-line { flex: 1; height: 4px; background: var(--gray-200); margin: -30px 10px 0 10px; }
+    .step-line.active { background: var(--success); }
+    .step-line.current { background: var(--gold); }
+    .step-label { font-size: 12px; font-weight: bold; }
+  </style>
+
+  <div class="page-header">
+    <div class="page-title">
+      <h1>Strategic Planning Dashboard</h1>
+      <p>ระบบตรวจสอบสถานะโครงสร้างภารกิจ และแจ้งเตือนข้อมูล</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header">
+      <h3>📍 แถบสถานะการดำเนินงาน (Track Your Proposal)</h3>
+    </div>
+    <div class="card-body">
+      <div class="step-indicator">
+         <div class="step active">
+           <div class="step-icon">1</div>
+           <div class="step-label">ร่างโครงสร้าง (Drafting)</div>
+         </div>
+         <div class="step-line active"></div>
+         <div class="step active">
+           <div class="step-icon">2</div>
+           <div class="step-label">HR ตรวจสอบ</div>
+         </div>
+         <div class="step-line current"></div>
+         <div class="step current">
+           <div class="step-icon">3</div>
+           <div class="step-label">รอสภาอนุมัติ</div>
+         </div>
+         <div class="step-line"></div>
+         <div class="step">
+           <div class="step-icon">4</div>
+           <div class="step-label">ประกาศใช้</div>
+         </div>
+      </div>
+      <div style="text-align:center; margin-top:20px;">
+        <button class="btn btn-primary" onclick="showPage('เเนะนำโครงสร้าง')" style="padding: 12px 24px; font-size:14px;">+ เริ่มปรับปรุงโครงสร้างภารกิจ</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2-1">
+    <div class="card">
+      <div class="card-header">
+        <h3>📋 รายละเอียดการปฏิบัติงาน (Detailed Tasks View)</h3>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ตำแหน่ง</th>
+              <th>ภารกิจ</th>
+              <th>สถานะ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>นักวิชาการศึกษา (ข้าราชการ)</td>
+              <td>สนับสนุนการจัดการเรียนการสอน (MIS-002)</td>
+              <td><span class="badge badge-success">✅ ผ่าน</span></td>
+            </tr>
+            <tr>
+              <td>นักวิชาการคอมพิวเตอร์ (พนักงานราชการ)</td>
+              <td>พัฒนาระบบเครือข่ายสารสนเทศ (MIS-005)</td>
+              <td><span class="badge badge-success">✅ ผ่าน</span></td>
+            </tr>
+            <tr>
+              <td>เจ้าหน้าที่บริหารงานทั่วไป (พนักงานมหาวิทยาลัย)</td>
+              <td>งานธุรการและสารบรรณกลาง (MIS-001)</td>
+              <td><span class="badge badge-warning">⏳ รอตรวจสอบ</span></td>
+            </tr>
+            <tr>
+              <td>นักวิชาการพัสดุ (ลูกจ้างประจำ)</td>
+              <td>จัดซื้อจัดจ้างและบริหารพัสดุ (MIS-004)</td>
+              <td><span class="badge badge-warning">⏳ รอตรวจสอบ</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <div class="card">
+        <div class="card-header">
+          <h3>🔔 ศูนย์รวมการแจ้งเตือน (Alert Hub)</h3>
+        </div>
+        <div class="card-body">
+          <div style="padding:15px; border-radius:10px; background:#f0f9ff; border:1px solid #bae6fd; margin-bottom:10px;">
+            <div style="font-size:11px; color:#0369a1; margin-bottom:5px;">📨 Email Alert (จำลอง)</div>
+            <div style="font-size:13px; font-weight:bold; color:var(--navy);">"สภามหาวิทยาลัยมีมติอนุมัติโครงสร้างของส่วนพัสดุแล้ว กรุณาตรวจสอบรายงานสรุปผล"</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <h3>🔗 ระบบตรวจสอบความสัมพันธ์ (Mapping Viewer)</h3>
+        </div>
+        <div class="card-body">
+           <p style="font-size:12px; color:var(--gray-600); margin-bottom:15px;">ตรวจสอบภาพรวมการเชื่อมโยงภารกิจ (Process 5) ให้มั่นใจก่อนกดยืนยันส่ง HR</p>
+           <button class="btn btn-outline" style="width:100%; justify-content:center;" onclick="showPage('connection')">🔍 ดูแผนผังความสัมพันธ์</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+    }
